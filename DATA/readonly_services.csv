@@ -1,0 +1,17 @@
+/_user/contacts/all.json,Connection Management Service,List all connections
+/_user/contacts/accepted.json,Connection Management Service,List accepted connections
+/_user/contacts/blocked.json,Connection Management Service,List blocked connections
+/_user/contacts/ignored.json,Connection Management Service,List ignored connections
+/_user/contacts/invited.json,Connection Management Service,List invited connections
+/_user/contacts/pending.json,Connection Management Service,List pending connections
+/_user/contacts/rejected.json,Connection Management Service,List rejected connections
+/system/me,Me,About Me
+/var/presence.json,Presence REST services,Fetch the presence status of the current user
+/var/presence.contacts.json,Presence REST services,View the presence status of the contacts of the current user
+/var/search/files/myfiles.json,Files,List all the files the currently logged in user
+/var/search/files/allfiles.json,Files,All readable files in store
+/var/search/files/mybookmarks.json,Files,Bookmarks for currently logged on user
+/var/search/files/mysites.json,Files,Files linked to a site
+/var/search/files/mycontacts.json,Files,Files for user from contacts
+/var/search/activity/myfeed.json,Activity,Viewing your personal feed
+/var/search/activity/sitefeed.json,Activity,Viewing a Site feed
