@@ -9,27 +9,27 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="NO_USERS" elementType="Argument">
             <stringProp name="Argument.name">NO_USERS</stringProp>
-            <stringProp name="Argument.value">2000</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ANONYMOUS_THREADS" elementType="Argument">
             <stringProp name="Argument.name">ANONYMOUS_THREADS</stringProp>
-            <stringProp name="Argument.value">20</stringProp>
+            <stringProp name="Argument.value">2</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ANONYMOUS_LOOPS" elementType="Argument">
             <stringProp name="Argument.name">ANONYMOUS_LOOPS</stringProp>
-            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ANONYMOUS_DEV" elementType="Argument">
             <stringProp name="Argument.name">ANONYMOUS_DEV</stringProp>
-            <stringProp name="Argument.value">20</stringProp>
+            <stringProp name="Argument.value">2</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ANONYMOUS_DELAY" elementType="Argument">
             <stringProp name="Argument.name">ANONYMOUS_DELAY</stringProp>
-            <stringProp name="Argument.value">300</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="USER_CSV" elementType="Argument">
@@ -55,6 +55,16 @@
           <elementProp name="LOGGED_DELAY" elementType="Argument">
             <stringProp name="Argument.name">LOGGED_DELAY</stringProp>
             <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="READONLY_CSV" elementType="Argument">
+            <stringProp name="Argument.name">READONLY_CSV</stringProp>
+            <stringProp name="Argument.value">/home/alan/SAKIOAE/DOCs/readonly_services.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="READONLY_COUNT" elementType="Argument">
+            <stringProp name="Argument.name">READONLY_COUNT</stringProp>
+            <stringProp name="Argument.value">17</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
