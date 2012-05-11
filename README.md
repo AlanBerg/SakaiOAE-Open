@@ -1,4 +1,5 @@
 SakaiOAE-Open
 =============
 
-Any Public Work for Sakai OAE
+TESTS - Materials Used for Testing
+DOCs - Documentation associated with Repo
