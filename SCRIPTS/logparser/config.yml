@@ -1,0 +1,127 @@
+# CONFIGURATION for log parsing
+# Location to files (Please change to suite).  
+# Uses YAML structure.
+
+# Location of error log 
+INPUT_FILES:
+  ERROR_LOG: /home/alan/Desktop/LOG_PARSER/OUTPUT/error.log13
+
+# Location of files to output
+# SLOW - Slow queries file
+# SUMMARY_HTML - HTML version of the report
+# UNCAUGHT - Lines that were not white listed. E.G: New issues
+# URGENT - Lines that should be reviewed. Known significant issues
+
+OUTPUT_FILES:
+  SLOW: /home/alan/Desktop/LOG_PARSER/OUTPUT/slow.txt
+  SUMMARY_HTML: /home/alan/Desktop/LOG_PARSER/OUTPUT/summary.html
+  UNCAUGHT: /home/alan/Desktop/LOG_PARSER/OUTPUT/uncaught.txt
+  URGENT: /home/alan/Desktop/LOG_PARSER/OUTPUT/urgent.txt
+  
+# Patterns to match error log lines
+# Two types IGNORE or URGENT and patterns are matched per log level
+# Simply add your own patterns in the right location and commit
+# Remember to indent and add : 0
+# : is the stop of the pattern
+# 0 is setting the counter to 0
+
+IGNORE_ERROR:
+  Uncaught IO Problem while handling the request org\.mortbay\.jetty\.EofException: 0
+  Configuration Error ====: 0
+URGENT_ERROR:
+  ServerProtectionServiceImpl Configuration Error\:: 0
+  Uncaught Throwable: 0
+  Uncaught exception in Thread: 0
+  OsgiJmsBridge Interrupted: 0
+  Failed to: 0
+  MBean is already registered: 0  
+IGNORE_WARN:
+  is not a registered namespace prefix: 0
+  invalid path: 0
+  Cookie name "Path" is a reserved token: 0
+  overwriting: 0
+  Denied anonymous: 0
+  Created Counter schema: 0  
+# Not necessary Urgent, just not understood.
+URGENT_WARN:
+  Script cache has reached its limit: 0
+  Failed to start jmx connector: 0
+  Can't write node tree to writer; null content: 0
+  No Cluster tracking is available: 0
+  SQL ERROR: 0
+URGENT_INFO:
+  Slow Query: 0
+  Dependency not satisfied: 0
+  check http://ehcache.org: 0
+   
+# As you would expect the ignore list for info is a long list 
+IGNORE_INFO:
+  org\.sakaiproject\.nakamura\.user\.counts\.CountsRefreshJob: 0
+  GET .* HTTP: 0
+  POST .* HTTP: 0
+  HEAD .* HTTP: 0
+  Cache Stats Hits: 0
+  AuthNCookie has expired: 0
+  UPDATED authorizable for searching: 0
+  BundleEvent STOPPED: 0
+  ServiceEvent UNREGISTERING: 0
+  has been shutdown: 0
+  shutting down: 0
+  EventListeners stopped: 0
+  Index closed: 0
+  SMTP server stopped: 0
+  events in a batch: 0
+  Processing a batch: 0
+  Event Redo Log: 0
+  Opening New Reader: 0
+  Deleting Reader File: 0
+  Started handling a message: 0
+  Unable to authenticate null: 0
+  Stopping SMTP server: 0
+  Indexing connections: 0
+  Starting: 0
+  stopping: 0
+  Stopping: 0
+  RESOLVED: 0
+  STARTED: 0
+  REGISTERED: 0
+  SQL OK: 0
+  Stopped Apache Sling: 0
+  Column OK: 0
+  ObservationManager: 0
+  FelixStartLevel: 0
+  IndexMerger merged: 0
+  New Quartz update: 0
+  STARTLEVEL CHANGED: 0
+  CM Configuration Updater: 0
+  Fire ConfigurationEvent: 0
+  with name osgi: 0
+  JMX consoles can connect: 0
+  activate component: 0
+  Started jetty: 0
+URGENT_UNKNOWN:
+  Position: 0
+  NOT STARTED: 0
+
+# Stack trace pattern etc.
+IGNORE_UNKNOWN:
+  Caused by: 0
+  at: 0
+  more: 0
+  Using thread pool: 0
+  Using job-store: 0
+  Number of jobs: 0
+  running locally: 0
+  Currently in standby mode: 0
+
+# Slow queries for ERROR and WARN
+#  
+SLOW_ERROR: SlowQueryLogger Very Slow Query (.*)ms (.*)
+SLOW_ERROR_SOLR: SlowQueryLogger Very slow solr query (.*) ms (.*)
+SLOW_WARN: SlowQueryLogger Slow Query (.*)ms (.*)
+SLOW_WARN_SOLR: SlowQueryLogger Slow solr query (.*) ms (.*)
+
+# Fixed strings for HTML report
+# Sorry David Roldan, no Internationalization
+HTML:
+  TITLE: Report Summary
