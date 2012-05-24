@@ -29,6 +29,7 @@ would require a large amount of effort to maintain the rules.
 * --errordir= Location of directory containing log files. Overrides the configuration file setting.
 * --errorfile= Location of errorfile to pass. Overrides the configuration file setting.
 * --add_date= Set to 1 if you want a date stamp added at the end of file names
+* --debug= Set to 1 to print uncaught wanrs and errors
 
 ### Requires Perl YAML module   
 
