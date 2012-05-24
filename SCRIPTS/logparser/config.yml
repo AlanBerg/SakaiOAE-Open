@@ -26,6 +26,10 @@ OUTPUT_FILES:
 # 0 is setting the counter to 0
 
 URGENT_ERROR:
+  MalformedURLException: 0
+  DynamicSecurityManager Unexpected error: 0
+  OutOfMemoryError: 0
+  StringIndexOutOfBoundsException: 0
   LiteResourceProvider ERROR: 0
   Invalid UserManager implementation: 0
   invalid path: 0
@@ -81,17 +85,23 @@ URGENT_ERROR:
   activate method has thrown: 0
   RelatedContentSearchPropertyProvider: 0
   
-  
 IGNORE_ERROR:
+  PDFont: 0
   AccessDeniedException: 0
   Configuration Error ====: 0
   not allowed to add or modify item: 0
   LiteInternalMessageHandler Denied: 0
   SocketException: 0
   Session has been closed: 0
+  PDCIDFont: 0
   
 # Not necessary Urgent, just not understood.
 URGENT_WARN:
+  DatabasePersistenceManager execute failed: 0
+  OutOfMemoryError: 0
+  jetty\.EofException: 0
+  nonexistent content: 0
+  Unable to record change: 0
   JDBCStorageClient Failed: 0
   Response already committed: 0
   Unavailable: 0
@@ -165,6 +175,9 @@ IGNORE_WARN:
   overwriting: 0
   Denied anonymous: 0
   Created Counter schema: 0
+  pdfparser: 0
+  PDFontFactory: 0
+  Converting class: 0
 
 
 # Slow queries for ERROR and WARN

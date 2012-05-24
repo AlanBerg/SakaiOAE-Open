@@ -10,7 +10,8 @@
 # --errordir= Location of directory containing log files. Overrides the configuration file setting.
 # --errorfile= Location of errorfile to pass. Overrides the configuration file setting.
 # --add_date= Set to 1 if you want a date stamp added at the end of file names
-#
+# --debug= Set to 1 to get extra debug information
+
 # The error log is a mixture of different logging information types
 # The aim of this parser is to make a concise report from the log
 # using whitelisting of known defects are generic summaries.
@@ -73,6 +74,8 @@ my $nowrite_uncaught = 0;
 # Remember this is the date of parsing not the date of the error file.
 my $hasStamp = 0;
 
+my $debug = 0;
+
 # TODO Write Commandline help option
 GetOptions(
 	"config=s"           => \$file,
@@ -82,8 +85,9 @@ GetOptions(
 	"errorfile=s"        => \$errorfile,
 	"startline=i"        => \$startline,
 	"nowrite_uncaught=i" => \$nowrite_uncaught,
-	"add_date=i"         => \$hasStamp
-
+	"add_date=i"         => \$hasStamp,
+	"debug=i"            =>,
+	\$debug
 );
 
 # Load in configuration
@@ -93,19 +97,22 @@ my $config = Load($yml);
 
 my $timestamp = "";
 if ($hasStamp) {
-	$timestamp =".".stamp();
+	$timestamp = "." . stamp();
 }
 
 # Open Files that relevant data is going to be split
 # Also a cheap man's sanity check of the configuration file
 open( SLOW, ">$config->{OUTPUT_FILES}{SLOW}$timestamp" )
-  || die "Unable to open HTML summary $config->{OUTPUT_FILES}{SLOW}$timestamp\n";
+  || die
+  "Unable to open HTML summary $config->{OUTPUT_FILES}{SLOW}$timestamp\n";
 unless ($nowrite_uncaught) {
 	open( DUMP, ">$config->{OUTPUT_FILES}{UNCAUGHT}$timestamp" )
-	  || die "Unable to open HTML summary $config->{OUTPUT_FILES}{UNCAUGHT}$timestamp\n";
+	  || die
+"Unable to open HTML summary $config->{OUTPUT_FILES}{UNCAUGHT}$timestamp\n";
 }
 open( URGENT, ">$config->{OUTPUT_FILES}{URGENT}$timestamp" )
-  || die "Unable to open HTML summary $config->{OUTPUT_FILES}{URGENT}$timestamp\n";
+  || die
+  "Unable to open HTML summary $config->{OUTPUT_FILES}{URGENT}$timestamp\n";
 
 # Either you can point at a file or a directory to parse from the commandline, but not both at the same time
 if ( ($errorfile) && ($errordir) ) {
@@ -225,7 +232,7 @@ sub act_on_all_logs {
 sub sendToHTML {
 	open( HTML, ">$config->{OUTPUT_FILES}{SUMMARY_HTML}$timestamp" )
 	  || die
-	  "Unable to open HTML summary $config->{OUTPUT_FILES}{SUMMARY_HTML}$timestamp\n";
+"Unable to open HTML summary $config->{OUTPUT_FILES}{SUMMARY_HTML}$timestamp\n";
 	print HTML header() . $pre_string . footer();
 }
 
@@ -304,8 +311,10 @@ sub parse {
 	unless ($flag) {
 
 		# Debug line uncomment to enable
-		if ( $ruleset eq 'ERROR' ) { print "$line"; }
-		if ( $ruleset eq 'WARN' )  { print "$line"; }
+		if ($debug) {
+			if ( $ruleset eq 'ERROR' ) { print "$line"; }
+			if ( $ruleset eq 'WARN' )  { print "$line"; }
+		}
 		$global_counters{'dirty'}++;
 	}
 	return $flag;

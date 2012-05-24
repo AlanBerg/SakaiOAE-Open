@@ -75,5 +75,4 @@ Developers
    
 More? - Lots of features can be added if basics prove stable.
 
-NOTE: In the report the Uncounted: number is only a guess and will produce minus numbers if more than one pattern is triggered for a line
     
