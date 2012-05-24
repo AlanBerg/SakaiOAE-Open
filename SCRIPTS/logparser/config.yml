@@ -25,30 +25,162 @@ OUTPUT_FILES:
 # : is the stop of the pattern
 # 0 is setting the counter to 0
 
-IGNORE_ERROR:
-  Uncaught IO Problem while handling the request org\.mortbay\.jetty\.EofException: 0
-  Configuration Error ====: 0
 URGENT_ERROR:
-  ServerProtectionServiceImpl Configuration Error\:: 0
+  LiteResourceProvider ERROR: 0
+  Invalid UserManager implementation: 0
+  invalid path: 0
+  failed to handle upload: 0
+  IOException: 0
+  Error while closing Version Manager: 0
+  ArrayIndexOutOfBoundsException: 0
+  ConnectTimeoutException: 0
+  code 404 when enrolling: 0
+  code 400 when enrolling: 0
+  ImportOperation Exception: 0
+  rogue implementation: 0
+  ModifyOperation Access Denied: 0
+  StreamRendererServlet parseRange: 0
+  violates unique constraint: 0
+  URISyntaxException: 0
+  Unable to set localhost: 0
+  IllegalArgumentException: 0
+  NoSuchObjectException: 0
+  ImportOperation Access Denied: 0
+  performing update on read only: 0
+  instance could not be created: 0
+  Port already in use: 0
+  StorageClientException: 0
+  QueueManager Failed: 0
+  SocketTimeoutException: 0
+  LiteBasicLTIPostOperation Exception: 0
+  initializing Jetty: 0
+  No live SolrServers: 0
+  WorldCreationServlet Got a JSONException: 0
+  JSONException reading world data: 0
+  service missing: 0
+  FileNotFoundException: 0
+  JMSException: 0
+  Uncaught IO Problem: 0
+  initial content: 0
+  SQLException: 0
+  Permission denied: 0
+  following server failed: 0
+  Untrusted request: 0
+  SlingServletResolver Original : 0
+  NullPointerException: 0
+  IllegalStateException: 0
+  ServerProtectionServiceImpl Configuration : 0
   Uncaught Throwable: 0
-  Uncaught exception in Thread: 0
+  Uncaught exception : 0
   OsgiJmsBridge Interrupted: 0
   Failed to: 0
-  MBean is already registered: 0  
+  already registered: 0 
+  empty configuration file: 0
+  Error in REST : 0
+  Failed Doc SolrInputDocument: 0
+  activate method has thrown: 0
+  RelatedContentSearchPropertyProvider: 0
+  
+  
+IGNORE_ERROR:
+  AccessDeniedException: 0
+  Configuration Error ====: 0
+  not allowed to add or modify item: 0
+  LiteInternalMessageHandler Denied: 0
+  SocketException: 0
+  Session has been closed: 0
+  
+# Not necessary Urgent, just not understood.
+URGENT_WARN:
+  JDBCStorageClient Failed: 0
+  Response already committed: 0
+  Unavailable: 0
+  java\.lang\.Exception: 0
+  Existing lock file: 0
+  circular group membership: 0
+  LiteInternalMessageHandler Unable to deliver: 0
+  Illegal domain attribute: 0
+  Authentication failed for admin: 0
+  No properties provider: 0
+  Error bootstrapping: 0
+  Failed to perform insert: 0
+  IllegalStateException: 0
+  IllegalArgumentException: 0
+  No Secure Key: 0
+  QueueManager Unreadable Event: 0
+  InterruptedException: 0
+  SolrServerException: 0
+  cant create Client: 0
+  InvalidItemStateException: 0
+  Solr master is down: 0
+  Failed To : 0
+  activate method has thrown: 0
+  SessionItemStateManager inconsistent: 0
+  IOException: 0
+  master is down: 0
+  No live SolrServers: 0
+  Repository startup failed: 0
+  Exception during event: 0
+  BindException: 0
+  NullPointerException: 0
+  BatchHelper Failed to parse: 0
+  No Node created: 0
+  Unable to find page: 0
+  recovering \.\.\.: 0
+  registration dissapeared: 0
+  cachedStatement Leaking: 0
+  Failed to write: 0
+  Not scheduling: 0
+  Invalid selector: 0
+  Unable to send: 0
+  not indexing: 0
+  is not supported: 0
+  reached its limit: 0
+  Failed to start jmx: 0
+  null content: 0
+  No Cluster tracking: 0
+  SQL ERROR: 0
+  unable to determine user: 0
+  Could not find sensitiveContent: 0
+  TikaException: 0
+  NaN: 0
+  cannot be cast: 0
+  UnknownHostException: 0
+  error while saving: 0
+  RepositoryLock Unable: 0
+  User admin does not exist: 0 
+  
 IGNORE_WARN:
+  data is out of date: 0
+  Session has been closed: 0
+  ReCaptcha challenge: 0
+  MarketingDataPostProcessor: 0
+  member not found: 0
+  PDFParser Parsing Error: 0
+  Unable to find auth: 0
+  Denied : 0
   is not a registered namespace prefix: 0
   invalid path: 0
   Cookie name "Path" is a reserved token: 0
   overwriting: 0
   Denied anonymous: 0
-  Created Counter schema: 0  
-# Not necessary Urgent, just not understood.
-URGENT_WARN:
-  Script cache has reached its limit: 0
-  Failed to start jmx connector: 0
-  Can't write node tree to writer; null content: 0
-  No Cluster tracking is available: 0
-  SQL ERROR: 0
+  Created Counter schema: 0
+
+
+# Slow queries for ERROR and WARN
+# TODO: Consider changing to the same structure as other pattern types
+SLOW_ERROR: SlowQueryLogger Very Slow Query (.*)ms (.*)
+SLOW_ERROR_SOLR: SlowQueryLogger Very slow solr query (.*) ms (.*)
+SLOW_WARN: SlowQueryLogger Slow Query (.*)ms (.*)
+SLOW_WARN_SOLR: SlowQueryLogger Slow solr query (.*) ms (.*)
+
+# Fixed strings for HTML report
+# Sorry David Roldan, no Internationalization
+HTML:
+  TITLE: Report Summary
+
+# INFO and UNKNOWN levels are probably going to be ignored
+# Otherwise there will be a lot of maintenance work
 URGENT_INFO:
   Slow Query: 0
   Dependency not satisfied: 0
@@ -114,14 +246,3 @@ IGNORE_UNKNOWN:
   running locally: 0
   Currently in standby mode: 0
 
-# Slow queries for ERROR and WARN
-#  
-SLOW_ERROR: SlowQueryLogger Very Slow Query (.*)ms (.*)
-SLOW_ERROR_SOLR: SlowQueryLogger Very slow solr query (.*) ms (.*)
-SLOW_WARN: SlowQueryLogger Slow Query (.*)ms (.*)
-SLOW_WARN_SOLR: SlowQueryLogger Slow solr query (.*) ms (.*)
-
-# Fixed strings for HTML report
-# Sorry David Roldan, no Internationalization
-HTML:
-  TITLE: Report Summary
