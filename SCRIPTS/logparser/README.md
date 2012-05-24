@@ -7,17 +7,28 @@ If the line is not tainted by a pattern it is possibly a new defect type.
 
 
 Also splits logs into parts for quicker review by QA and system admins:
-    slow log - all slow queries
-    urgent - patterns that should be reviewed
-    uncaught - does not match a pattern (NEW error types)
-    summary  - In HTML format
+
+* slow log - all slow queries
+* urgent - patterns that should be reviewed
+* uncaught - does not match a pattern (NEW error types)
+* summary  - In HTML format
     
 
 ### Command line 
 
+Supports Parsing whole directories, adding time stamps and ignoring info and warns which
+would require a large amount of effort to maintain the rules.
+
 (optional):
-   --config=location of configuration file
-   --startline=Line First line in error log to parse
+* --config=location of configuration file
+* --startline=Line First line in error log to parse
+* --config= Location of configuration file (falls back to config.yml)
+* --startline= Line First line in error log to parse
+* --ignore_info= Set to 1 to ignore the info level. This level has the most noise
+* --ignore_unknown= Set to 1 to ignore the Warn level which contains a lot of noise
+* --errordir= Location of directory containing log files. Overrides the configuration file setting.
+* --errorfile= Location of errorfile to pass. Overrides the configuration file setting.
+* --add_date= Set to 1 if you want a date stamp added at the end of file names
 
 ### Requires Perl YAML module   
 
