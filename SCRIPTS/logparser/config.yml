@@ -26,9 +26,13 @@ OUTPUT_FILES:
 # 0 is setting the counter to 0
 
 URGENT_ERROR:
+  ClassNotFoundException: 0
+  Activator start error: 0 
+  NoHttpResponseException: 0
   Unable to reschedule email: 0
   lock is locked: 0
   QueueManager Not Found: 0
+  QueueManager Bad Request: 0
   already been registered: 0
   failed to resolve path: 0
   QueueManager Internal Server Error: 0
@@ -92,6 +96,7 @@ URGENT_ERROR:
   RelatedContentSearchPropertyProvider: 0
   
 IGNORE_ERROR:
+  Ignoring Trusted Token: 0
   PDFont: 0
   AccessDeniedException: 0
   Configuration Error ====: 0
@@ -103,6 +108,9 @@ IGNORE_ERROR:
   
 # Not necessary Urgent, just not understood.
 URGENT_WARN:
+  retainer which does not exist: 0
+  SparsePrincipalProvider ERROR: 0
+  Could not create user: 0
   Too many open files: 0
   DatabasePersistenceManager execute failed: 0
   OutOfMemoryError: 0
@@ -168,6 +176,8 @@ URGENT_WARN:
   User admin does not exist: 0 
   
 IGNORE_WARN:
+  ImageException: 0
+  Ignoring Trusted Token: 0
   allowed safe: 0
   data is out of date: 0
   Session has been closed: 0
