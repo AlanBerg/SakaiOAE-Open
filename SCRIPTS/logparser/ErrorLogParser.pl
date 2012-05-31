@@ -182,9 +182,15 @@ foreach $type ( sort( keys %global_types ) ) {
 	# Only an estimate, so lets not waste console space
 	#$pre_string .= "Uncounted: $local_counter\n\n";
 }
-$pre_string .=
-  "\n\nNumber of lines that are still untainted: $global_counters{'dirty'}\n";
-$pre_string .= "See: $config->{OUTPUT_FILES}{UNCAUGHT}\n\n";
+
+# Can check for this line in the log files of Jenkins and
+# automatically fail a build if needed
+if ( $global_counters{'dirty'} > 0 ) {
+	$pre_string .=
+"\n\nNumber of lines that are still untainted: $global_counters{'dirty'}\n";
+    $pre_string .= "See: $config->{OUTPUT_FILES}{UNCAUGHT}\n\n";
+}
+
 $pre_string .= "Slow query file: $config->{OUTPUT_FILES}{SLOW}\n";
 $pre_string .= "Urgent query file: $config->{OUTPUT_FILES}{URGENT}\n";
 
