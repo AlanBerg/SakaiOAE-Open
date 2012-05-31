@@ -11,6 +11,7 @@
 # --errorfile= Location of errorfile to pass. Overrides the configuration file setting.
 # --add_date= Set to 1 if you want a date stamp added at the end of file names
 # --debug= Set to 1 to get extra debug information
+# --include_all= Set to 0 to output only a Summary report
 
 # The error log is a mixture of different logging information types
 # The aim of this parser is to make a concise report from the log
@@ -76,6 +77,9 @@ my $hasStamp = 0;
 
 my $debug = 0;
 
+# Include all output files or just the final report
+my $include_all = 1;
+
 # TODO Write Commandline help option
 GetOptions(
 	"config=s"           => \$file,
@@ -86,8 +90,8 @@ GetOptions(
 	"startline=i"        => \$startline,
 	"nowrite_uncaught=i" => \$nowrite_uncaught,
 	"add_date=i"         => \$hasStamp,
-	"debug=i"            =>,
-	\$debug
+	"debug=i"            => \$debug,
+	"include_all=i"      => \$include_all
 );
 
 # Load in configuration
@@ -102,17 +106,20 @@ if ($hasStamp) {
 
 # Open Files that relevant data is going to be split
 # Also a cheap man's sanity check of the configuration file
-open( SLOW, ">$config->{OUTPUT_FILES}{SLOW}$timestamp" )
-  || die
-  "Unable to open HTML summary $config->{OUTPUT_FILES}{SLOW}$timestamp\n";
-unless ($nowrite_uncaught) {
-	open( DUMP, ">$config->{OUTPUT_FILES}{UNCAUGHT}$timestamp" )
+
+if ($include_all) {
+	open( SLOW, ">$config->{OUTPUT_FILES}{SLOW}$timestamp" )
 	  || die
-"Unable to open HTML summary $config->{OUTPUT_FILES}{UNCAUGHT}$timestamp\n";
+	  "Unable to open SLOW summary $config->{OUTPUT_FILES}{SLOW}$timestamp\n";
+	unless ($nowrite_uncaught) {
+		open( DUMP, ">$config->{OUTPUT_FILES}{UNCAUGHT}$timestamp" )
+		  || die
+"Unable to open Uncaught $config->{OUTPUT_FILES}{UNCAUGHT}$timestamp\n";
+	}
+	open( URGENT, ">$config->{OUTPUT_FILES}{URGENT}$timestamp" )
+	  || die
+"Unable to open URGENT summary $config->{OUTPUT_FILES}{URGENT}$timestamp\n";
 }
-open( URGENT, ">$config->{OUTPUT_FILES}{URGENT}$timestamp" )
-  || die
-  "Unable to open HTML summary $config->{OUTPUT_FILES}{URGENT}$timestamp\n";
 
 # Either you can point at a file or a directory to parse from the commandline, but not both at the same time
 if ( ($errorfile) && ($errordir) ) {
@@ -188,7 +195,7 @@ foreach $type ( sort( keys %global_types ) ) {
 if ( $global_counters{'dirty'} > 0 ) {
 	$pre_string .=
 "\n\nNumber of lines that are still untainted: $global_counters{'dirty'}\n";
-    $pre_string .= "See: $config->{OUTPUT_FILES}{UNCAUGHT}\n\n";
+	$pre_string .= "See: $config->{OUTPUT_FILES}{UNCAUGHT}\n\n";
 }
 
 $pre_string .= "Slow query file: $config->{OUTPUT_FILES}{SLOW}\n";
@@ -284,7 +291,9 @@ sub parse {
 	for $rule ( keys %{ $config->{ 'URGENT_' . $ruleset } } ) {
 		if ( $line =~ /$rule/ ) {
 			$config->{ 'URGENT_' . $ruleset }{$rule}++;
-			print URGENT $line;
+			if ($include_all) {
+				print URGENT $line;
+			}
 			$flag = 1;
 		}
 	}
@@ -295,7 +304,9 @@ sub parse {
 		|| ( $line =~ /$config->{'SLOW_ERROR_SOLR'}/ ) )
 	{
 		$config->{ 'IGNORE_' . $ruleset }{'SLOW QUERIES'}++;
-		print SLOW "[$1 ms][$ruleset] $2\n";
+		if ($include_all) {
+			print SLOW "[$1 ms][$ruleset] $2\n";
+		}
 		$flag = 1;
 	}
 
@@ -303,13 +314,17 @@ sub parse {
 		|| ( $line =~ /$config->{'SLOW_WARN_SOLR'}/ ) )
 	{
 		$config->{ 'IGNORE_' . $ruleset }{'SLOW QUERIES'}++;
-		print SLOW "[$1 ms][$ruleset] $2\n";
+		if ($include_all) {
+			print SLOW "[$1 ms][$ruleset] $2\n";
+		}
 		$flag = 1;
 	}
 
 	unless ($flag) {
-		unless ($nowrite_uncaught) {
-			print DUMP "$line";
+		if ($include_all) {
+			unless ($nowrite_uncaught) {
+				print DUMP "$line";
+			}
 		}
 	}
 
