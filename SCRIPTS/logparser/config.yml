@@ -26,6 +26,8 @@ OUTPUT_FILES:
 # 0 is setting the counter to 0
 
 URGENT_ERROR:
+  GetContentPoolServlet Could not determine: 0
+  DocMigrator Could not determine: 0
   ClassNotFoundException: 0
   Activator start error: 0 
   NoHttpResponseException: 0
