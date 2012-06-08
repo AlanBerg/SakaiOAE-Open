@@ -1,0 +1,18 @@
+A first attempt at monitoring File Descriptors
+For Sakai OAE on Linux
+Good for Burn tests
+Pulls in the command
+    ls -l /proc/2693/fd
+Where 2693 is the PID of the SakaiOAE process
+
+Command line Options:
+  -pid = PID of OAE process
+  -sleep = Time between running the command (default once every 60 seconds)
+  -iterations = Number of times measured before exiting (default 60)
+   -debug = 1 print lines not understood (For developers, only default is off)
+   
+Minimum to run for pid 2693
+ -pid=2693
+
+For Questions:
+Alan Berg - a.m.berg AT uva.nl
