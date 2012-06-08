@@ -1,0 +1,31 @@
+This is an error.log parser to provide performance information
+
+UNDER CONSTRUCTION
+
+1) It provides summaries of response times
+This is useful for setting scaling factors in
+performance analysis.
+
+2) The report can be connected up to Jenkins to cause
+failure and notify developers to clean up issues
+
+3) It gives you a rough overview of the performance of your
+system without having to log through Apache
+
+Optional commands:
+  -startline= Line First line in error log to parse
+  -errorfile= Location of errorfile to pass. Overrides the configuration file setting.
+  -errordir= Directory where multiple error files are kept. The script will review them all
+  -warn=Warn level in ms (default 100 ms)
+  -error=Error level in ms (default 4000 ms)
+  -dumpfile= Location to dump lines that are passed the ERROR threshold (default all_error.txt)
+  -ignore_dump= Dont dump log lines.
+
+Example opts for parsing a dir
+  -errordir=/media/OS/Downloads/all/  -dumpfile=/media/OS/Downloads/4_seconds.txt
+
+Example opts for parsing a file
+  -errorfile=/media/OS/Downloads/all/error1/error.log
+
+For Questions:
+Alan Berg - a.m.berg AT uva.nl
