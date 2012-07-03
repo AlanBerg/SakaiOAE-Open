@@ -4,7 +4,7 @@
 
 # Location of error log 
 INPUT_FILES:
-  ERROR_LOG: /home/alan/Desktop/LOG_PARSER/OUTPUT/error.log13
+  ERROR_LOG: error.log
 
 # Location of files to output
 # SLOW - Slow queries file
@@ -13,10 +13,10 @@ INPUT_FILES:
 # URGENT - Lines that should be reviewed. Known significant issues
 
 OUTPUT_FILES:
-  SLOW: /home/alan/Desktop/LOG_PARSER/OUTPUT/slow.txt
-  SUMMARY_HTML: /home/alan/Desktop/LOG_PARSER/OUTPUT/summary.html
-  UNCAUGHT: /home/alan/Desktop/LOG_PARSER/OUTPUT/uncaught.txt
-  URGENT: /home/alan/Desktop/LOG_PARSER/OUTPUT/urgent.txt
+  SLOW: OUTPUT/slow.txt
+  SUMMARY_HTML: OUTPUT/summary.html
+  UNCAUGHT: OUTPUT/uncaught.txt
+  URGENT: OUTPUT/urgent.txt
   
 # Patterns to match error log lines
 # Two types IGNORE or URGENT and patterns are matched per log level
@@ -264,6 +264,7 @@ IGNORE_INFO:
   JMX consoles can connect: 0
   activate component: 0
   Started jetty: 0
+  Repository Pinger.*has already gone: 0
 URGENT_UNKNOWN:
   Position: 0
   NOT STARTED: 0
@@ -278,4 +279,5 @@ IGNORE_UNKNOWN:
   Number of jobs: 0
   running locally: 0
   Currently in standby mode: 0
-
+  Building \\d+-bit filter for segment: 0
+  \s*: 0
