@@ -221,7 +221,7 @@ sub process_one_file {
 	my $line_counter = 0;
 	while ( $line = <LOG> ) {
 		if ( $line_counter++ < $startline ) { next; }
-		parse_types($line);
+		parse_types($line, $errfile, $line_counter);
 	}
 	close(LOG);
 	print " ==> Line Count: $line_counter\n";
@@ -252,7 +252,7 @@ sub sendToHTML {
 # Choose log level or if does not follow expected structure
 # such as stack traces then place in unknown catagory.
 sub parse_types {
-	my ($line) = @_;
+	my ($line, $filename, $lineno) = @_;
 	if ( $line =~ / \*(\w*)\* / ) {
 		my $type = $1;
 		if ( ($ignoreInfo) && ( $type eq 'INFO' ) ) {
@@ -261,13 +261,13 @@ sub parse_types {
 		}
 		else {
 			$global_types{$type}++;
-			parse( $type, $line );
+			parse( $type, $line, $filename, $lineno );
 		}
 	}
 	else {
 		unless ($ignoreUnknown) {
 			$global_types{'UNKNOWN'}++;
-			parse( 'UNKNOWN', $line );
+			parse( 'UNKNOWN', $line, $filename, $lineno );
 		}
 	}
 }
@@ -276,8 +276,24 @@ sub parse_types {
 # There are currently six sets of filter depending on log level
 # Slow errors for ERROR and WARN level are filtered out to a file.
 sub parse {
-	my ( $ruleset, $line ) = @_;
+	my ( $ruleset, $line, $filename, $lineno ) = @_;
 	my $flag = 0;
+	my $fn = "";
+	my $pos = 0;
+
+	# find position of last /
+	while (($pos = index($filename,'/',$pos)) != -1)
+	{
+		printf "$pos: ".substr($filename, $pos);
+	}
+
+	if ($pos > -1) {
+		$fn = substr($filename, $pos);
+	} else {
+		$fn = $filename;
+	}
+
+	my $fstamp = "[$fn:$lineno]";
 
 	# Check all ignore rules for a given log level defined by $ruleset
 	for $rule ( keys %{ $config->{ 'IGNORE_' . $ruleset } } ) {
@@ -292,7 +308,7 @@ sub parse {
 		if ( $line =~ /$rule/ ) {
 			$config->{ 'URGENT_' . $ruleset }{$rule}++;
 			if ($include_all) {
-				print URGENT $line;
+				print URGENT "$fstamp $line";
 			}
 			$flag = 1;
 		}
@@ -305,7 +321,7 @@ sub parse {
 	{
 		$config->{ 'IGNORE_' . $ruleset }{'SLOW QUERIES'}++;
 		if ($include_all) {
-			print SLOW "[$1 ms][$ruleset] $2\n";
+			print SLOW "[$1 ms]$fstamp[$ruleset] $2\n";
 		}
 		$flag = 1;
 	}
@@ -315,7 +331,7 @@ sub parse {
 	{
 		$config->{ 'IGNORE_' . $ruleset }{'SLOW QUERIES'}++;
 		if ($include_all) {
-			print SLOW "[$1 ms][$ruleset] $2\n";
+			print SLOW "[$1 ms]$fstamp[$ruleset] $2\n";
 		}
 		$flag = 1;
 	}
@@ -323,7 +339,7 @@ sub parse {
 	unless ($flag) {
 		if ($include_all) {
 			unless ($nowrite_uncaught) {
-				print DUMP "$line";
+				print DUMP "$fstamp$line";
 			}
 		}
 	}
@@ -333,8 +349,8 @@ sub parse {
 
 		# Debug line uncomment to enable
 		if ($debug) {
-			if ( $ruleset eq 'ERROR' ) { print "$line"; }
-			if ( $ruleset eq 'WARN' )  { print "$line"; }
+			if ( $ruleset eq 'ERROR' ) { print "$fstamp$line"; }
+			if ( $ruleset eq 'WARN' )  { print "$fstamp$line"; }
 		}
 		$global_counters{'dirty'}++;
 	}
