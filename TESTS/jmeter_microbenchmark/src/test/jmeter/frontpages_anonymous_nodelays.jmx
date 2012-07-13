@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Hit anonymously front pages" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">REFERER</stringProp>
+            <stringProp name="Header.value">http://localhost:8080</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Anonymous" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(ANONYMOUS_THREADS)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1342092536000</longProp>
+        <longProp name="ThreadGroup.end_time">1342092536000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="filename">ANONYMOUS_URLS.txt</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">All threads</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">PATH,COMMENT</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HEAD ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">HEAD</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PUT ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="OPTIONS ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">OPTIONS</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TRACE ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">TRACE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DELETE ${__P(HOST)}${PATH}" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__P(HOST)}</stringProp>
+          <stringProp name="HTTPSampler.port">${__P(PORT)}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(PROTOCOL)}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="TestPlan.comments">Add some random ordering (OK a little delay)</stringProp>
+            <stringProp name="ConstantTimer.delay">30</stringProp>
+            <stringProp name="RandomTimer.range">10</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

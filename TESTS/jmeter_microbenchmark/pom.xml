@@ -1,0 +1,125 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>sakaiproject.org</groupId>
+    <artifactId>jmeter</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <name>jmeter</name>
+    <packaging>pom</packaging>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Sonatype Repository</id>
+            <url>https://oss.sonatype.org/content/groups/staging</url>
+        </pluginRepository>
+    </pluginRepositories>
+     
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jmeter.plugin.version>1.6.1-SNAPSHOT</jmeter.plugin.version>
+        <jmeter-analysis.version>1.0.1-SNAPSHOT</jmeter-analysis.version>
+        <gmaven.version>1.4</gmaven.version>
+    </properties>
+    <!-- mvn verify runs jmeter and then analysises the XML stored results -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>${jmeter.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Configuration notes http://jmeter.lazerycode.com/releasenotes.txt -->
+                    <testResultsTimestamp>false</testResultsTimestamp>
+                    <reportConfig>
+                        <enable>true</enable>
+                        <postfix>true</postfix>
+                    </reportConfig>
+                    <!-- We want to generate different status codes to exercise the code, ignore these warnings -->
+                    <ignoreResultFailures>true</ignoreResultFailures>
+                    <ignoreResultErrors>true</ignoreResultErrors>
+                    <suppressJMeterOutput>true</suppressJMeterOutput>
+                    <!-- Test plans under /src/test/jmeter also the location of the data files-->
+                    <testFilesIncluded>
+                        <!-- Used for regression testing review /sling/logs/error.log -->
+                        <jMeterTestFile>frontpages_anonymous_nodelays.jmx</jMeterTestFile>
+                        <!--Create users, just add lines to the data file and then they will be created as well -->
+                        <jMeterTestFile>create_users_from_csv.jmx</jMeterTestFile>
+                        <!--Performance microbenchmark for developers and Jenkins -->
+                        <jMeterTestFile>dashboard.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-analysis-maven-plugin</artifactId>
+                <version>${jmeter-analysis.version}</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>analyze</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Configuration notes https://github.com/afranken/jmeter-analysis-maven-plugin -->
+                    <!--DESIGN FEATURE from plugin cant get more than one jtl on page -->
+                    <source>${project.build.directory}/**/dashboard.jtl</source>
+                    <target>${project.build.directory}/results</target>
+                    <generateCSVs>true</generateCSVs>
+                    <generateCharts>true</generateCharts>
+                </configuration>
+                 
+            </plugin>
+            <!--Scripting will come in handy later. Lets use it as an echo command for now -->
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>${gmaven.version}</version>
+                <executions><execution>
+                        <id>run-mygroovy</id>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <classpath>
+                                <element>
+                                    <groupId>commons-lang</groupId>
+                                    <artifactId>commons-lang</artifactId>
+                                    <version>2.6</version>
+                                </element>
+                            </classpath>
+                            <source>
+                                println "\n-------------------------------------------------------"
+                                println "WELCOME TO A MICROBENCHMARK AND REGRESSION TEST"
+                                println "-------------------------------------------------------"
+                                println "Default configuration expects a clean Sakai OAE demo running on http://localhost:8080"
+                                println "Printed report: /target/summary.html"
+                                println "Original data: /target/jmeter/results"
+                                println "Check the new issues: DEMO_OAE_ROOT/sling/logs/error.log "
+                                println "Plans and Data: /src/test/jmeter"
+                                println "\tuser.properties: Configure Host details number of threads etc"
+                                println "\t\tThis is the configuration file which defines how hard the system is hit\n" 
+                                println "\tANONYMOUS_URLS.txt: URLS hit anonymously with all HTTP verbs"
+                                println "\tHITME_HARD.txt: URLs, number of times to hit when logged in"
+                                println "\tUSERS_TO_LOGIN.txt: User list, just add more lines to make more users\n"
+                                println "The results on the console without a name are for logging out. This is a bug in the plugin\n"
+                                println "-------------------------------------------------------\n"
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+ 
