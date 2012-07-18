@@ -213,15 +213,32 @@ sendToHTML($pre_string);
 # Process one file
 sub process_one_file {
 	my ($errfile) = @_;
+	my $pos = 0;
+	my $ind = -1;
+	my $filename;
+
 	print "Processing: $errfile";
 	open( LOG, $errfile )
 	  || die "Unable to open error log $errfile\n";
+
+	# find position of last /
+	while (($pos = index($errfile, '/', $pos)) > -1)
+	{
+		$pos++;
+		$ind = $pos;
+	}
+
+	if ($ind > -1) {
+		$filename  = substr($errfile, $ind);
+	} else {
+		$filename  = $errfile;
+	}
 
 	# process_one_file Loop for processing Log file
 	my $line_counter = 0;
 	while ( $line = <LOG> ) {
 		if ( $line_counter++ < $startline ) { next; }
-		parse_types($line, $errfile, $line_counter);
+		parse_types($line, $filename, $line_counter);
 	}
 	close(LOG);
 	print " ==> Line Count: $line_counter\n";
@@ -230,6 +247,7 @@ sub process_one_file {
 
 # Run through all the files in a directory with error.log but not with .gz
 sub act_on_all_logs {
+	printf "acting on $File::Find::name\n";
 	if ( ( $File::Find::name =~ /error\.log/ )
 		&& !( $File::Find::name =~ /\.gz/ ) )
 	{
@@ -278,22 +296,8 @@ sub parse_types {
 sub parse {
 	my ( $ruleset, $line, $filename, $lineno ) = @_;
 	my $flag = 0;
-	my $fn = "";
-	my $pos = 0;
 
-	# find position of last /
-	while (($pos = index($filename,'/',$pos)) != -1)
-	{
-		printf "$pos: ".substr($filename, $pos);
-	}
-
-	if ($pos > -1) {
-		$fn = substr($filename, $pos);
-	} else {
-		$fn = $filename;
-	}
-
-	my $fstamp = "[$fn:$lineno]";
+	my $fstamp = "[$filename:$lineno]";
 
 	# Check all ignore rules for a given log level defined by $ruleset
 	for $rule ( keys %{ $config->{ 'IGNORE_' . $ruleset } } ) {
