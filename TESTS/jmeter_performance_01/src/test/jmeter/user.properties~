@@ -1,0 +1,41 @@
+# HOST Configuration
+HOST=localhost
+PORT=8080
+
+# Protocol is either HTTP or HTTPS
+PROTOCOL=HTTP
+
+# AUTHENTICATION FOR PROVISIONING
+# If we want a conventions based environment later
+# Not needed for the current tests.
+#ADMIN_USER=admin
+#ADMIN_PASS=admin
+
+# Anonymous URLS
+ANONYMOUS_THREADS=5
+ANONYMOUS_LOOPS=100
+ANONYMOUS_DELAY=100
+ANONYMOUS_DEV=20
+
+# LOGIN
+# Typical pauses between clicks are around 30000 ms
+# However, to decrease threads you can decrease delays
+# Remember the 10% rule of thumb
+LOGIN_THREADS=10
+LOGIN_LOOPS=10
+LOGIN_DELAY=100
+LOGIN_DEV=30
+
+# WEIGHT between different activities
+LOGIN_REPEAT_DASHBOARD=10
+LOGIN_REPEAT_REGULAR_ME=10
+LOGIN_REPEAT_REGULAR_ALL=20
+LOGIN_REPEAT_SEARCH=20
+LOGIN_REPEAT_CHANGE=3
+LOGIN_REPEAT_VIEW_CONTACTS=3
+LOGIN_REPEAT_VIEW_MESSAGES=2
+LOGIN_REPEAT_VIEW_LIBRARY=10
+
+# NOT READY YET
+LOGIN_REPEAT_VIEW_MEMBERSHIPS=0
+LOGIN_REPEAT_INVITE=0

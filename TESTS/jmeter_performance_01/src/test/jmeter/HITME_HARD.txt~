@@ -1,0 +1,18 @@
+/system/me,5
+/system/telemetry,5
+/tags/directory.json,2
+/var/contacts/find-all.json
+    /var/contacts/find-all = 2
+    /var/contacts/findstate = 4
+    /var/contacts/related-contacts = 4
+    /var/message/boxcategory-all = 14
+    /var/search/activity/all = 318
+    /var/search/general = 2
+    /var/search/groups = 7
+    /var/search/myrelatedgroups = 6
+    /var/search/pool/all = 2
+    /var/search/pool/auth-all = 6
+    /var/search/pool/me/related-content = 6
+    /var/search/public/random-content = 5
+    /var/search/users = 3
+    /var/search/usersgroups = 11

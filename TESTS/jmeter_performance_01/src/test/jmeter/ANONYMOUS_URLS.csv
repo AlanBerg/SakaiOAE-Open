@@ -1,0 +1,11 @@
+Main Page,/dev/,1
+System Console,/system/console,1
+Main Page - Activity,/var/search/activity/all.json?items=12&_charset_=utf-8,5
+Main Page - Tags,/tags/directory.tagged.json?_charset_=utf-8,1
+Main Page - World2,/var/templates/worlds.2.json?_charset_=utf-8,1
+Main Page - WIDGETS,/var/widgets.json?callback=define,1
+Main Page - ME,/system/me?_charset_=utf-8,1
+Main Page - sticfiles,/system/staticfiles?_charset_=utf-8&f=%2Fdev%2Fbundle%2Fdefault.properties&f=%2Fdev%2Fconfiguration%2Fcustom.properties&f=%2Fdev%2Fbundle%2Fen_US.properties,1
+Main Page - Random Content,/var/search/public/random-content.json?page=0&items=10&tag&type=c&_charset_=utf-8&_1234567,1
+Search Content - Static,/search#l=content&q=Hi,1
+System Telemetry,/system/telemetry,1

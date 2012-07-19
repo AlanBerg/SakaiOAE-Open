@@ -1,0 +1,22 @@
+Sanity [TODO] - Checks for Regressions before starting performance test.
+              - Consider failing a build if assertions fail
+Anonymous - Hits the front page Ajax calls at the same time as the logged in tests
+Logged tests [Done]
+            Login
+            Presence
+            DashBoard
+            General Search
+            Update profile
+            View Contacts
+            View Messages
+            View Library
+            Logout
+Login tests [TODO]          
+            InviteContact    [Underconstruction]
+            AcceptContact    [TODO]      
+            View Memberships [Underconstruction]
+JENKINS INFRASTRUCTURE [TODO]
+
+
+Remember to run Jmeter to view testplans from the commandline: Try mvn jmeter:gui 
+from the top level of this project
