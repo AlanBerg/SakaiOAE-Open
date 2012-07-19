@@ -1,10 +1,13 @@
 Zero fuss Sakai OAE Microbenchmark and Regression tester.
-Assumes a clean demo version of Sakai OAE running on port 8080
+Assumes a provisioned version of Sakai OAE running on port 8080
 
 To run: mvn clean verify
 
+For the Jmeter GUI
+mvn jmeter:gui
+
 -------------------------------------------------------
-WELCOME TO A MICROBENCHMARK AND REGRESSION TEST
+WELCOME TO A PERFORMANCE TEST PLAN FOR OAE
 -------------------------------------------------------
 Printed report: /target/summary.html
 Original data: /target/jmeter/results
@@ -13,9 +16,9 @@ Plans and Data: /src/test/jmeter
 	user.properties: Configure Host details number of threads etc
 		This is the configuration file which defines how hard the system is hit
 
-	ANONYMOUS_URLS.txt: URLS hit anonymously with all HTTP verbs
-	HITME_HARD.txt: URLs, number of times to hit when logged in
-	USERS_TO_LOGIN.txt: User list, just add more lines to make more users
+        ALL.JMX the master Jmeter plan
+           .csv files - Data
+           .groovy files - Run before the tests
 
 The results on the console without a name are for logging out. This is a bug in the plugin.
 -------------------------------------------------------
