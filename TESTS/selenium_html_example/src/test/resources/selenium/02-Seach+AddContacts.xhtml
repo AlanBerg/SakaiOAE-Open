@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='lhnavigation_public_pages']/li[2]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.s3d-search-inputfield</td>
+	<td>\13</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=input.s3d-search-inputfield</td>
+	<td>selenium2</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>css=button.s3d-button.s3d-overlay-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=button.s3d-button.s3d-overlay-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.s3d-button.s3d-overlay-button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=selenium2</td>
+	<td>Selenium2 User</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=span.s3d-search-result-name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>First name: Selenium2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=entity_user_add_to_contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=entity_user_add_to_contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=entity_user_add_to_contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=addtocontacts_form_personalnote</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>id=addtocontacts_form_personalnote</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=addtocontacts_form_personalnote</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=addtocontacts_form_personalnote</td>
+	<td>Test invitation from Selenium user.</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=addtocontacts_form_invite</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=addtocontacts_form_invite</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>id=entity_user_add_to_contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Sign out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=topnavigation_user_options_login_fields_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2500</td>
+	<td>2500</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=topnavigation_user_options_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=topnavigation_user_options_login_fields_username</td>
+	<td>selenium2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=topnavigation_user_options_login_fields_password</td>
+	<td>selenium2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=topnavigation_user_options_login_button_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=My messages</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=My messages</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Invitations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Invitations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.inbox_excerpt &gt; p</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Selenium User has invited you to become a connection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.inbox_excerpt &gt; p</td>
+	<td>Selenium User has invited you to become a contact: Test invitation from Selenium user.</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Selenium User to: Selenium2 User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.inbox_excerpt &gt; p</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Selenium User has invited you to become a contact: <br /><br />Test invitation from Selenium user.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Accept invitation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Ignore invitation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>allowNativeXpath</td>
+	<td>false</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=.inbox_invitation_accept</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>You accepted this contact invitation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Accept invitation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Ignore invitation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td></td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comp-body</td>
+	<td>Selenium Test</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=send_message</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.gritter-with-image</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Your message has been sent.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=button.s3d-button.s3d-header-button.s3d-button-no-text.inbox_delete_button.inbox_action_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.s3d-button.s3d-header-button.s3d-button-no-text.inbox_delete_button.inbox_action_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#inbox_no_messages &gt; div.s3d-no-results-container</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Selenium User has invited you to become a connection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Sign out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=topnavigation_user_options_login_fields_username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2500</td>
+	<td>2500</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>id=topnavigation_user_options_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=topnavigation_user_options_login_fields_username</td>
+	<td>selenium</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=topnavigation_user_options_login_fields_password</td>
+	<td>selenium</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=topnavigation_user_options_login_button_login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=My messages</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=My messages</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.lhnavigation_subnav_item_content &gt; a.s3d-regular-links</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.lhnavigation_subnav_item_content &gt; a.s3d-regular-links</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.inbox_excerpt</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Selenium Test</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Re: Selenium User has invited you to become a connection</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>css=div.inbox_placeholder &gt; input[type=&quot;checkbox&quot;]</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.inbox_placeholder &gt; input[type=&quot;checkbox&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>css=div.inbox_placeholder &gt; input[type=&quot;checkbox&quot;]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=inbox_delete_selected</td>
+	<td>Delete selected</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=inbox_delete_selected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='lhnavigation_public_pages']/li[4]/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>750</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Find more people</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='lhnavigation_public_pages']/li[4]/div/div</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Selenium2 User</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//li[@id='selenium2']/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//li[@id='selenium2']/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Are you sure you want to remove Selenium2 User from your contacts?</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//button[@type='button']</td>
+	<td>Cancel</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>id=contacts_delete_contact_confirm</td>
+	<td>Remove contact</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=contacts_delete_contact_confirm</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.s3d-no-results-container</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>My contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=#contacts_container_list_empty &gt; div.s3d-no-results-container &gt; p</td>
+	<td>You don't have any contacts yet. Find and add people</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=#contacts_container_list_empty &gt; div.s3d-no-results-container &gt; p</td>
+	<td>You don't have any contacts yet. Find and add people</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Selenium2 User</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

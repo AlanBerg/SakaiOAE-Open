@@ -1,0 +1,22 @@
+-----------------------------------------------------------------
+Run Slenium IDE plans from within Maven generating results that
+can be consumed in Jenkins.
+-----------------------------------------------------------------
+
+
+Run test.sh
+
+HOST=location of HOST to attack
+SUITE=Location of test suite
+
+Test plan created by Kent Fitzgerald
+Plumbing Alan Berg
+
+DISPLAY :20 is the default value for the Xvfb in memory X server
+
+
+Webdriver is more stable, but it is nice to run selenium IDE plans raw.
+Assumes Firefox exists on the path somewhere. Probably only works on NIX system
+
+See: Jenkins Continuous Integration Cookbook for more examples.
+
